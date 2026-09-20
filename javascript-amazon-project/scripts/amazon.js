@@ -1,8 +1,8 @@
-import {cart} from '../data/cart.js';
+import { cart, addToCart } from '../data/cart.js';
 
 let productsHTML = '';
 products.forEach((product) => {
-  productsHTML  += `
+  productsHTML += `
     <div class="product-container">
           <div class="product-image-container">
             <img class="product-image"
@@ -47,53 +47,34 @@ products.forEach((product) => {
             Added
           </div>
 
-          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-name="${product.name}">
+          <button class="add-to-cart-button button-primary js-add-to-cart" data-product-id="${product.id}" data-product-name="${product.name}">
             Add to Cart
           </button>
       </div>
   `;
-
 });
 
-console.log(productsHTML);
+document.querySelector('.js-products-grid').innerHTML = productsHTML;
 
-document.querySelector('.js-products-grid').
-innerHTML = productsHTML;
+function updateCartQuantity() {
+  let cartQuantity = 0;
+  cart.forEach((item) => {
+    cartQuantity += item.quantity;
+  });
+
+  const cartQuantityElement = document.querySelector('.js-cart-quantity');
+  if (cartQuantityElement) {
+    cartQuantityElement.innerHTML = cartQuantity;
+  }
+}
+
+updateCartQuantity();
 
 document.querySelectorAll('.js-add-to-cart')
   .forEach((button) => {
     button.addEventListener('click', () => {
-      const productName = button.dataset.productName;
-
-      let matchingItem;
-
-      cart.forEach((item) => {
-        if (productName === item.productName) {
-          matchingItem = item;
-        }
-      });
-
-      if (matchingItem) {
-        matchingItem.quantity += 1;
-      } else {
-        cart.push({
-          productName: productName,
-          quantity: 1
-        });
-      }
-
-      let cartQuantity = 0;
-
-      cart.forEach((item) => {
-        cartQuantity += item.quantity;
-      });
-
-      const cartQuantityElement = document.querySelector('.js-cart-quantity');
-      if (cartQuantityElement) {
-        cartQuantityElement.innerHTML = cartQuantity;
-      }
-
-      console.log(cartQuantity);
-      console.log(cart);
+      const productId = button.dataset.productId;
+      addToCart(productId);
+      updateCartQuantity();
     });
   });
