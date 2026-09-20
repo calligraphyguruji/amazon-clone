@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Amazon.in: Search Results</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts: Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <!-- CSS stylesheets -->
+    <link rel="stylesheet" href="styles/shared/general.css">
+    <link rel="stylesheet" href="styles/shared/amazon-header.css">
+    <link rel="stylesheet" href="styles/pages/amazon.css">
+    <link rel="stylesheet" href="styles/pages/search.css">
+  </head>
+  <body>
+    <!-- Top Navigation Belt -->
+    <header class="amazon-header">
+      <div class="amazon-header-left-section">
+        <a href="amazon.html" class="header-link logo-container" title="Amazon India">
+          <img class="amazon-logo" src="images/amazon-logo-white.png" alt="Amazon Logo">
+          <span class="amazon-in-suffix">.in</span>
+          <img class="amazon-mobile-logo" src="images/amazon-mobile-logo-white.png" alt="Amazon Logo">
+        </a>
+
+        <!-- Location Widget -->
+        <div class="header-link nav-location js-location-btn" title="Choose your delivery location">
+          <span class="nav-location-icon">📍</span>
+          <div class="nav-location-text">
+            <span class="nav-location-line-1 js-header-location-name">Delivering to Greater N... 201310</span>
+            <span class="nav-location-line-2">Update location</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search Section -->
+      <div class="amazon-header-middle-section">
+        <form class="search-bar-form js-search-form">
+          <select class="search-category-select js-search-category">
+            <option value="all" selected>All</option>
+            <option value="electronics">Electronics</option>
+            <option value="apparel">Fashion</option>
+            <option value="kitchen">Home &amp; Kitchen</option>
+            <option value="sports">Sports</option>
+            <option value="appliances">Appliances</option>
+            <option value="daily">Daily Needs</option>
+          </select>
+
+          <input class="search-bar js-search-input" type="text" placeholder="Search Amazon.in" autocomplete="off">
+
+          <button class="search-button js-search-button" type="submit" aria-label="Search">
+            <img class="search-icon" src="images/icons/search-icon.png" alt="Search">
+          </button>
+        </form>
+      </div>
+
+      <!-- Right Nav Links -->
+      <div class="amazon-header-right-section">
+        <!-- Language Selector -->
+        <div class="header-link nav-lang-link js-lang-btn">
+          <span class="flag-icon">🇮🇳</span>
+          <span class="lang-code">EN</span>
+          <span class="nav-arrow">▼</span>
+
+          <div class="lang-dropdown-menu js-lang-dropdown">
+            <div class="lang-dropdown-item"><input type="radio" name="lang" checked> English - EN</div>
+            <div class="lang-dropdown-item"><input type="radio" name="lang"> हिन्दी - HI</div>
+            <div class="lang-dropdown-item"><input type="radio" name="lang"> தமிழ் - TA</div>
+          </div>
+        </div>
+
+        <!-- Account & Lists -->
+        <div class="header-link account-link js-account-link">
+          <span class="nav-line-1">Hello, sign in</span>
+          <span class="nav-line-2">Account &amp; Lists <span class="nav-arrow">▼</span></span>
+
+          <div class="nav-dropdown-menu js-account-dropdown">
+            <div class="account-dropdown-signin">
+              <a href="checkout.html"><button class="account-signin-btn">Sign in</button></a>
+              <div class="account-new-customer">New customer? <a href="#">Start here.</a></div>
+            </div>
+            <div class="account-dropdown-grid">
+              <div class="account-dropdown-col">
+                <h4>Your Lists</h4>
+                <ul>
+                  <li><a href="#">Create a Wish List</a></li>
+                  <li><a href="#">Wish from Any Website</a></li>
+                </ul>
+              </div>
+              <div class="account-dropdown-col">
+                <h4>Your Account</h4>
+                <ul>
+                  <li><a href="#">Your Account</a></li>
+                  <li><a href="orders.html">Your Orders</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Returns & Orders -->
+        <a class="header-link orders-link" href="orders.html">
+          <span class="nav-line-1">Returns</span>
+          <span class="nav-line-2">&amp; Orders</span>
+        </a>
+
+        <!-- Cart -->
+        <a class="header-link cart-link" href="checkout.html" title="Shopping Cart">
+          <div class="cart-icon-wrapper">
+            <img class="cart-icon" src="images/icons/cart-icon.png" alt="Cart">
+            <div class="cart-quantity js-cart-quantity">0</div>
+          </div>
+          <div class="cart-text">Cart</div>
+        </a>
+      </div>
+    </header>
+
+    <!-- Sub-navigation Bar -->
+    <nav class="amazon-subnav">
+      <div class="subnav-link subnav-all-btn js-sidebar-toggle">
+        <span class="subnav-all-icon">☰</span>
+        <span>All</span>
+      </div>
+      <a class="subnav-link" href="search.html?category=all">Fresh <span class="subnav-dropdown-arrow">▼</span></a>
+      <a class="subnav-link" href="search.html?category=all">Amazon Pay</a>
+      <a class="subnav-link" href="search.html?search=mobile">Mobiles</a>
+      <a class="subnav-link" href="search.html?deals=true">Today's Deals</a>
+      <a class="subnav-link" href="search.html?category=all">Coupons</a>
+      <a class="subnav-link" href="search.html?search=electronics">Electronics</a>
+      <a class="subnav-link" href="search.html?search=computer">Computers</a>
+      <a class="subnav-link" href="search.html?search=apparel">Fashion</a>
+      <a class="subnav-link" href="search.html?search=kitchen">Home &amp; Kitchen</a>
+    </nav>
+
+    <!-- Main Search Layout -->
+    <div class="search-page-wrapper">
+      <!-- Sub-header bar -->
+      <div class="search-results-subbar">
+        <div class="search-results-info js-search-results-info">
+          1–16 of over 100 results for <span class="search-results-query-term js-query-display">"all products"</span>
+        </div>
+
+        <div class="search-sort-wrapper">
+          <label for="sort-select">Sort by:</label>
+          <select id="sort-select" class="search-sort-select js-sort-select">
+            <option value="featured">Featured</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Avg. Customer Review</option>
+            <option value="reviews">Customer Reviews: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="search-content-layout">
+        <!-- Left Filter Sidebar -->
+        <aside class="search-sidebar">
+          <button class="filter-clear-all-btn js-clear-filters-btn" style="margin-bottom: 12px; width: 100%;">Clear all filters</button>
+
+          <!-- Delivery Day -->
+          <div class="filter-group">
+            <div class="filter-group-title">Delivery Day</div>
+            <ul class="filter-list">
+              <li class="filter-item">
+                <input type="checkbox" id="delivery-tomorrow" class="js-filter-checkbox" data-filter="delivery" value="tomorrow">
+                <label for="delivery-tomorrow">Get It by Tomorrow</label>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Amazon Prime -->
+          <div class="filter-group">
+            <div class="filter-group-title">Amazon Prime</div>
+            <ul class="filter-list">
+              <li class="filter-item">
+                <input type="checkbox" id="filter-prime" class="js-filter-checkbox" data-filter="prime" value="true">
+                <label for="filter-prime"><span style="color: #00a8e1; font-weight: 800; font-style: italic;">✓prime</span></label>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Categories -->
+          <div class="filter-group">
+            <div class="filter-group-title">Category</div>
+            <ul class="filter-list">
+              <li class="filter-item"><a href="search.html?category=all" style="color: inherit; text-decoration: none;">All Categories</a></li>
+              <li class="filter-item"><a href="search.html?search=mobile" style="color: inherit; text-decoration: none;">Smartphones &amp; Mobiles</a></li>
+              <li class="filter-item"><a href="search.html?search=laptop" style="color: inherit; text-decoration: none;">Laptops &amp; Computers</a></li>
+              <li class="filter-item"><a href="search.html?search=headphones" style="color: inherit; text-decoration: none;">Headphones &amp; Audio</a></li>
+              <li class="filter-item"><a href="search.html?search=smartwatch" style="color: inherit; text-decoration: none;">Smartwatches</a></li>
+              <li class="filter-item"><a href="search.html?category=apparel" style="color: inherit; text-decoration: none;">Fashion &amp; Apparel</a></li>
+              <li class="filter-item"><a href="search.html?category=kitchen" style="color: inherit; text-decoration: none;">Home &amp; Kitchen</a></li>
+              <li class="filter-item"><a href="search.html?category=sports" style="color: inherit; text-decoration: none;">Sports &amp; Fitness</a></li>
+            </ul>
+          </div>
+
+          <!-- Brands -->
+          <div class="filter-group">
+            <div class="filter-group-title">Brands</div>
+            <ul class="filter-list">
+              <li class="filter-item">
+                <input type="checkbox" id="brand-apple" class="js-filter-checkbox" data-filter="brand" value="apple">
+                <label for="brand-apple">Apple</label>
+              </li>
+              <li class="filter-item">
+                <input type="checkbox" id="brand-samsung" class="js-filter-checkbox" data-filter="brand" value="samsung">
+                <label for="brand-samsung">Samsung</label>
+              </li>
+              <li class="filter-item">
+                <input type="checkbox" id="brand-oneplus" class="js-filter-checkbox" data-filter="brand" value="oneplus">
+                <label for="brand-oneplus">OnePlus</label>
+              </li>
+              <li class="filter-item">
+                <input type="checkbox" id="brand-sony" class="js-filter-checkbox" data-filter="brand" value="sony">
+                <label for="brand-sony">Sony</label>
+              </li>
+              <li class="filter-item">
+                <input type="checkbox" id="brand-boat" class="js-filter-checkbox" data-filter="brand" value="boat">
+                <label for="brand-boat">boAt</label>
+              </li>
+              <li class="filter-item">
+                <input type="checkbox" id="brand-noise" class="js-filter-checkbox" data-filter="brand" value="noise">
+                <label for="brand-noise">Noise</label>
+              </li>
+              <li class="filter-item">
+                <input type="checkbox" id="brand-puma" class="js-filter-checkbox" data-filter="brand" value="puma">
+                <label for="brand-puma">Puma</label>
+              </li>
+              <li class="filter-item">
+                <input type="checkbox" id="brand-pigeon" class="js-filter-checkbox" data-filter="brand" value="pigeon">
+                <label for="brand-pigeon">Pigeon</label>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Customer Review -->
+          <div class="filter-group">
+            <div class="filter-group-title">Customer Review</div>
+            <ul class="filter-list">
+              <li class="filter-item js-rating-filter" data-min-rating="4">
+                <img class="filter-rating-stars" src="images/ratings/rating-40.png" alt="4 stars"> &amp; Up
+              </li>
+              <li class="filter-item js-rating-filter" data-min-rating="3">
+                <img class="filter-rating-stars" src="images/ratings/rating-30.png" alt="3 stars"> &amp; Up
+              </li>
+            </ul>
+          </div>
+
+          <!-- Price -->
+          <div class="filter-group">
+            <div class="filter-group-title">Price</div>
+            <ul class="filter-list">
+              <li class="filter-item js-price-filter" data-max-price="1000">Under ₹1,000</li>
+              <li class="filter-item js-price-filter" data-min-price="1000" data-max-price="5000">₹1,000 - ₹5,000</li>
+              <li class="filter-item js-price-filter" data-min-price="5000" data-max-price="20000">₹5,000 - ₹20,000</li>
+              <li class="filter-item js-price-filter" data-min-price="20000">Over ₹20,000</li>
+            </ul>
+          </div>
+
+          <!-- Discount -->
+          <div class="filter-group">
+            <div class="filter-group-title">Discount</div>
+            <ul class="filter-list">
+              <li class="filter-item js-discount-filter" data-min-discount="10">10% Off or more</li>
+              <li class="filter-item js-discount-filter" data-min-discount="25">25% Off or more</li>
+              <li class="filter-item js-discount-filter" data-min-discount="50">50% Off or more</li>
+            </ul>
+          </div>
+
+          <!-- Pay On Delivery -->
+          <div class="filter-group">
+            <div class="filter-group-title">Pay On Delivery</div>
+            <ul class="filter-list">
+              <li class="filter-item">
+                <input type="checkbox" id="pay-on-delivery" class="js-filter-checkbox" data-filter="pod" value="true">
+                <label for="pay-on-delivery">Eligible for Pay On Delivery</label>
+              </li>
+            </ul>
+          </div>
+        </aside>
+
+        <!-- Right Results Grid -->
+        <main class="search-results-main">
+          <div class="active-filters-row js-active-filters-row">
+            <!-- Populated dynamically -->
+          </div>
+
+          <div class="search-results-grid js-search-results-grid">
+            <!-- Dynamically populated by search.js -->
+          </div>
+
+          <!-- Pagination -->
+          <div class="search-pagination js-search-pagination">
+            <button class="pagination-btn disabled">← Previous</button>
+            <button class="pagination-btn active">1</button>
+            <button class="pagination-btn">2</button>
+            <button class="pagination-btn">3</button>
+            <button class="pagination-btn">Next →</button>
+          </div>
+        </main>
+      </div>
+    </div>
+
+    <!-- Side Navigation Drawer -->
+    <div class="sidebar-overlay js-sidebar-overlay"></div>
+    <button class="sidebar-close-btn js-sidebar-close-btn" aria-label="Close Menu">✕</button>
+
+    <aside class="amazon-sidebar js-amazon-sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-user-avatar">👤</span>
+        <span class="sidebar-greeting">Hello, sign in</span>
+      </div>
+
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Trending</div>
+          <a class="sidebar-menu-item" href="search.html?deals=true">Best Sellers <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item" href="search.html?category=all">New Releases <span class="arrow">›</span></a>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Shop by Category</div>
+          <a class="sidebar-menu-item" href="search.html?search=mobile">Mobiles, Computers <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item" href="search.html?search=appliances">TV, Appliances, Electronics <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item" href="search.html?search=apparel">Fashion <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item" href="search.html?search=kitchen">Home, Kitchen, Pets <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item" href="search.html?search=sports">Sports, Fitness <span class="arrow">›</span></a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Location Modal -->
+    <div class="modal-overlay js-location-modal-overlay">
+      <div class="location-modal">
+        <div class="location-modal-header">
+          <h3>Choose your location</h3>
+          <button class="location-modal-close js-location-modal-close" aria-label="Close">✕</button>
+        </div>
+        <div class="location-modal-body">
+          <p class="location-modal-desc">
+            Select a delivery location to see product availability and delivery options for your area.
+          </p>
+
+          <form class="pincode-input-row js-pincode-form" onsubmit="return false;">
+            <input class="pincode-input js-pincode-input" type="text" placeholder="Enter an Indian pincode" maxlength="6">
+            <button class="pincode-apply-btn js-pincode-apply-btn" type="submit">Apply</button>
+          </form>
+
+          <div style="font-size: 13px; font-weight: 700; margin-top: 15px; margin-bottom: 8px;">
+            Or choose a major Indian city:
+          </div>
+
+          <div class="city-quick-pills">
+            <button class="city-pill js-quick-city" data-location="Greater Noida 201310">Greater Noida (201310)</button>
+            <button class="city-pill js-quick-city" data-location="New Delhi 110001">New Delhi (110001)</button>
+            <button class="city-pill js-quick-city" data-location="Mumbai 400001">Mumbai (400001)</button>
+            <button class="city-pill js-quick-city" data-location="Bengaluru 560001">Bengaluru (560001)</button>
+            <button class="city-pill js-quick-city" data-location="Hyderabad 500001">Hyderabad (500001)</button>
+            <button class="city-pill js-quick-city" data-location="Chennai 600001">Chennai (600001)</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Authentic Amazon Footer -->
+    <footer class="amazon-footer">
+      <div class="back-to-top-btn js-back-to-top">
+        Back to top
+      </div>
+
+      <div class="footer-main">
+        <div class="footer-col">
+          <div class="footer-col-title">Get to Know Us</div>
+          <ul class="footer-links-list">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press Releases</a></li>
+            <li><a href="#">Amazon Science</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Connect with Us</div>
+          <ul class="footer-links-list">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Make Money with Us</div>
+          <ul class="footer-links-list">
+            <li><a href="#">Sell on Amazon</a></li>
+            <li><a href="#">Amazon Global Selling</a></li>
+            <li><a href="#">Become an Affiliate</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Let Us Help You</div>
+          <ul class="footer-links-list">
+            <li><a href="checkout.html">Your Account</a></li>
+            <li><a href="orders.html">Returns Centre</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-logo">
+          <img src="images/amazon-logo-white.png" alt="Amazon" style="width: 80px;">
+          <div class="footer-country-pill">
+            <span>🌐 English</span>
+          </div>
+          <div class="footer-country-pill">
+            <span>🇮🇳 India</span>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          &copy; 1996–2026, Amazon.com, Inc. or its affiliates
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="data/products.js"></script>
+    <script type="module" src="scripts/search.js"></script>
+  </body>
+</html>

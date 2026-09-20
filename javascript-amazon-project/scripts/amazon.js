@@ -258,37 +258,17 @@ function setupSearchAndFilters() {
   const searchInput = document.querySelector('.js-search-input');
   const searchCategory = document.querySelector('.js-search-category');
 
-  // Search input live typing & form submission
+  // Search form submission -> Navigates to search.html like real Amazon
   if (searchForm && searchInput) {
-    const handleSearch = () => {
-      currentSearchQuery = searchInput.value;
-      if (searchCategory) {
-        currentCategory = searchCategory.value;
-      }
-      activeFilterPill = 'all';
-      updateFilterPillsUI('all');
-
-      const title = document.querySelector('.js-catalog-title');
-      if (title) {
-        title.innerText = currentSearchQuery.trim() !== ''
-          ? `Results for "${currentSearchQuery}"`
-          : 'Explore Amazon.in Deals';
-      }
-
-      renderProductsGrid();
-    };
-
     searchForm.addEventListener('submit', (e) => {
       e.preventDefault();
-      handleSearch();
-      const catalogEl = document.getElementById('catalog');
-      if (catalogEl) {
-        catalogEl.scrollIntoView({ behavior: 'smooth' });
+      const query = searchInput.value.trim();
+      const category = searchCategory ? searchCategory.value : 'all';
+      if (query !== '' || category !== 'all') {
+        window.location.href = `search.html?search=${encodeURIComponent(query)}&category=${encodeURIComponent(category)}`;
+      } else {
+        window.location.href = `search.html`;
       }
-    });
-
-    searchInput.addEventListener('input', () => {
-      handleSearch();
     });
   }
 

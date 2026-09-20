@@ -1,5 +1,198 @@
 const products = [
   {
+    id: "apple-iphone-15-128gb-black",
+    image: "images/products/iphone-15-black.jpg",
+    name: "Apple iPhone 15 (128 GB) - Black",
+    rating: {
+      stars: 4.5,
+      count: 8940
+    },
+    priceCents: 6990000,
+    keywords: [
+      "iphone",
+      "apple",
+      "phone",
+      "mobile",
+      "smartphone",
+      "ios",
+      "electronics"
+    ]
+  },
+  {
+    id: "samsung-galaxy-s24-ultra-5g",
+    image: "images/products/samsung-galaxy-s24.jpg",
+    name: "Samsung Galaxy S24 Ultra 5G (Titanium Gray, 12GB, 256GB Storage)",
+    rating: {
+      stars: 4.5,
+      count: 2450
+    },
+    priceCents: 12999900,
+    keywords: [
+      "samsung",
+      "galaxy",
+      "s24",
+      "ultra",
+      "phone",
+      "mobile",
+      "smartphone",
+      "android",
+      "electronics"
+    ]
+  },
+  {
+    id: "oneplus-12-5g-silky-black",
+    image: "images/products/oneplus-12.jpg",
+    name: "OnePlus 12 (Silky Black, 12GB RAM, 256GB Storage)",
+    rating: {
+      stars: 4.5,
+      count: 3200
+    },
+    priceCents: 6499900,
+    keywords: [
+      "oneplus",
+      "oneplus 12",
+      "phone",
+      "mobile",
+      "smartphone",
+      "android",
+      "electronics"
+    ]
+  },
+  {
+    id: "apple-macbook-air-m2-laptop",
+    image: "images/products/macbook-air-m2.jpg",
+    name: "Apple MacBook Air M2 Laptop (13.6-inch Liquid Retina Display, 8GB RAM, 256GB SSD)",
+    rating: {
+      stars: 5,
+      count: 4890
+    },
+    priceCents: 8990000,
+    keywords: [
+      "macbook",
+      "apple",
+      "laptop",
+      "macbook air",
+      "computer",
+      "m2",
+      "electronics"
+    ]
+  },
+  {
+    id: "sony-wh-1000xm4-wireless-headphones",
+    image: "images/products/sony-headphones.jpg",
+    name: "Sony WH-1000XM4 Industry Leading Wireless Noise Cancelling Headphones - Black",
+    rating: {
+      stars: 4.5,
+      count: 18450
+    },
+    priceCents: 2299000,
+    keywords: [
+      "sony",
+      "headphones",
+      "headphone",
+      "audio",
+      "noise cancelling",
+      "wireless",
+      "electronics"
+    ]
+  },
+  {
+    id: "boat-airdopes-141-true-wireless",
+    image: "images/products/boat-airdopes-141.jpg",
+    name: "boAt Airdopes 141 Bluetooth Truly Wireless in Ear Earbuds with 42H Playtime",
+    rating: {
+      stars: 4,
+      count: 198300
+    },
+    priceCents: 99900,
+    keywords: [
+      "boat",
+      "airdopes",
+      "earbuds",
+      "earphones",
+      "tws",
+      "audio",
+      "wireless",
+      "electronics"
+    ]
+  },
+  {
+    id: "boat-stone-180-bluetooth-speaker",
+    image: "images/products/bluetooth-speaker.jpg",
+    name: "boAt Stone 180 5W Bluetooth Speaker with Up to 10 Hours Playtime, IPX7 Resistance",
+    rating: {
+      stars: 4,
+      count: 45600
+    },
+    priceCents: 129900,
+    keywords: [
+      "boat",
+      "speaker",
+      "bluetooth speaker",
+      "speakers",
+      "audio",
+      "wireless",
+      "electronics"
+    ]
+  },
+  {
+    id: "noise-colorfit-pulse-smartwatch",
+    image: "images/products/smart-watch.jpg",
+    name: "Noise ColorFit Pulse 2 Max 1.85\" Display Bluetooth Calling Smart Watch - Jet Black",
+    rating: {
+      stars: 4,
+      count: 68700
+    },
+    priceCents: 149900,
+    keywords: [
+      "noise",
+      "smartwatch",
+      "smart watch",
+      "watch",
+      "watches",
+      "fitness",
+      "electronics"
+    ]
+  },
+  {
+    id: "pigeon-cruise-1800w-induction-cooktop",
+    image: "images/products/induction-cooktop.jpg",
+    name: "Pigeon by Stovekraft Cruise 1800 watt Induction Cooktop with 7 Segments LED Display",
+    rating: {
+      stars: 4,
+      count: 114200
+    },
+    priceCents: 159900,
+    keywords: [
+      "pigeon",
+      "induction",
+      "cooktop",
+      "kitchen",
+      "appliances",
+      "stove",
+      "cookware"
+    ]
+  },
+  {
+    id: "puma-mens-smashic-sneakers",
+    image: "images/products/puma-sneakers.jpg",
+    name: "Puma Men's Smashic Casual Sneakers - White & Black",
+    rating: {
+      stars: 4.5,
+      count: 5200
+    },
+    priceCents: 179900,
+    keywords: [
+      "puma",
+      "shoes",
+      "sneakers",
+      "footwear",
+      "fashion",
+      "apparel",
+      "sports"
+    ]
+  },
+  {
     id: "e43638ce-6aa0-4b85-b27f-e1d07eb678c6",
     image: "images/products/athletic-cotton-socks-6-pairs.jpg",
     name: "Black and Gray Athletic Cotton Socks - 6 Pairs",
