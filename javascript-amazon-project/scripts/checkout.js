@@ -1,9 +1,63 @@
 import { cart, removeFromCart, updateQuantity, saveToStorage } from '../data/cart.js';
 
-function renderOrderSummary() {
-  let cartSummaryHTML = '';
+function updateSummary() {
   let totalItemsCount = 0;
   let itemsCostCents = 0;
+
+  cart.forEach((cartItem) => {
+    let matchingProduct;
+    products.forEach((product) => {
+      if (product.id === cartItem.productId) {
+        matchingProduct = product;
+      }
+    });
+
+    if (matchingProduct) {
+      totalItemsCount += cartItem.quantity;
+      itemsCostCents += matchingProduct.priceCents * cartItem.quantity;
+    }
+  });
+
+  // Update Checkout Header count
+  const headerItemsElement = document.querySelector('.js-checkout-header-items');
+  if (headerItemsElement) {
+    headerItemsElement.innerText = `${totalItemsCount} item${totalItemsCount === 1 ? '' : 's'}`;
+  }
+
+  // Update Payment Summary
+  const paymentItemsElement = document.querySelector('.js-payment-summary-items');
+  if (paymentItemsElement) {
+    paymentItemsElement.innerText = totalItemsCount;
+  }
+
+  const paymentItemsCostElement = document.querySelector('.js-payment-summary-items-cost');
+  if (paymentItemsCostElement) {
+    paymentItemsCostElement.innerHTML = `&#8377;${(itemsCostCents / 100).toFixed(2)}`;
+  }
+
+  const shippingCostCents = cart.length > 0 ? 0 : 0;
+  const subtotalCents = itemsCostCents + shippingCostCents;
+  const taxCents = Math.round(subtotalCents * 0.1);
+  const totalCents = subtotalCents + taxCents;
+
+  const subtotalElement = document.querySelector('.js-payment-summary-subtotal');
+  if (subtotalElement) {
+    subtotalElement.innerHTML = `&#8377;${(subtotalCents / 100).toFixed(2)}`;
+  }
+
+  const taxElement = document.querySelector('.js-payment-summary-tax');
+  if (taxElement) {
+    taxElement.innerHTML = `&#8377;${(taxCents / 100).toFixed(2)}`;
+  }
+
+  const totalElement = document.querySelector('.js-payment-summary-total');
+  if (totalElement) {
+    totalElement.innerHTML = `&#8377;${(totalCents / 100).toFixed(2)}`;
+  }
+}
+
+function renderOrderSummary() {
+  let cartSummaryHTML = '';
 
   if (cart.length === 0) {
     cartSummaryHTML = `
@@ -30,9 +84,6 @@ function renderOrderSummary() {
       });
 
       if (!matchingProduct) return;
-
-      totalItemsCount += cartItem.quantity;
-      itemsCostCents += matchingProduct.priceCents * cartItem.quantity;
 
       cartSummaryHTML += `
         <div class="cart-item-container js-cart-item-container-${matchingProduct.id}">
@@ -119,49 +170,24 @@ function renderOrderSummary() {
     orderSummaryElement.innerHTML = cartSummaryHTML;
   }
 
-  // Update Checkout Header count
-  const headerItemsElement = document.querySelector('.js-checkout-header-items');
-  if (headerItemsElement) {
-    headerItemsElement.innerText = `${totalItemsCount} item${totalItemsCount === 1 ? '' : 's'}`;
-  }
+  updateSummary();
 
-  // Update Payment Summary
-  const paymentItemsElement = document.querySelector('.js-payment-summary-items');
-  if (paymentItemsElement) {
-    paymentItemsElement.innerText = totalItemsCount;
-  }
-
-  const paymentItemsCostElement = document.querySelector('.js-payment-summary-items-cost');
-  if (paymentItemsCostElement) {
-    paymentItemsCostElement.innerHTML = `&#8377;${(itemsCostCents / 100).toFixed(2)}`;
-  }
-
-  const shippingCostCents = cart.length > 0 ? 0 : 0;
-  const subtotalCents = itemsCostCents + shippingCostCents;
-  const taxCents = Math.round(subtotalCents * 0.1);
-  const totalCents = subtotalCents + taxCents;
-
-  const subtotalElement = document.querySelector('.js-payment-summary-subtotal');
-  if (subtotalElement) {
-    subtotalElement.innerHTML = `&#8377;${(subtotalCents / 100).toFixed(2)}`;
-  }
-
-  const taxElement = document.querySelector('.js-payment-summary-tax');
-  if (taxElement) {
-    taxElement.innerHTML = `&#8377;${(taxCents / 100).toFixed(2)}`;
-  }
-
-  const totalElement = document.querySelector('.js-payment-summary-total');
-  if (totalElement) {
-    totalElement.innerHTML = `&#8377;${(totalCents / 100).toFixed(2)}`;
-  }
-
-  // Attach delete handlers
+  // Attach delete handlers with container.remove()
   document.querySelectorAll('.js-delete-link').forEach((link) => {
     link.addEventListener('click', () => {
       const productId = link.dataset.productId;
       removeFromCart(productId);
-      renderOrderSummary();
+
+      const container = document.querySelector(`.js-cart-item-container-${productId}`);
+      if (container) {
+        container.remove();
+      }
+
+      updateSummary();
+
+      if (cart.length === 0) {
+        renderOrderSummary();
+      }
     });
   });
 
@@ -178,7 +204,14 @@ function renderOrderSummary() {
           renderOrderSummary();
         } else if (newQuantity === 0) {
           removeFromCart(productId);
-          renderOrderSummary();
+          const container = document.querySelector(`.js-cart-item-container-${productId}`);
+          if (container) {
+            container.remove();
+          }
+          updateSummary();
+          if (cart.length === 0) {
+            renderOrderSummary();
+          }
         }
       }
     });
