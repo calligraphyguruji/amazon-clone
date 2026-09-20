@@ -1,4 +1,4 @@
-import { cart, removeFromCart, saveToStorage } from '../data/cart.js';
+import { cart, removeFromCart, updateQuantity, saveToStorage } from '../data/cart.js';
 
 function renderOrderSummary() {
   let cartSummaryHTML = '';
@@ -54,6 +54,9 @@ function renderOrderSummary() {
               <div class="product-quantity">
                 <span>
                   Quantity: <span class="quantity-label">${cartItem.quantity}</span>
+                </span>
+                <span class="update-quantity-link link-primary js-update-link" data-product-id="${matchingProduct.id}">
+                  Update
                 </span>
                 <span class="delete-quantity-link link-primary js-delete-link" data-product-id="${matchingProduct.id}">
                   Delete
@@ -159,6 +162,25 @@ function renderOrderSummary() {
       const productId = link.dataset.productId;
       removeFromCart(productId);
       renderOrderSummary();
+    });
+  });
+
+  // Attach update handlers
+  document.querySelectorAll('.js-update-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      const productId = link.dataset.productId;
+      const currentItem = cart.find(item => item.productId === productId);
+      const newQuantityStr = prompt('Enter new quantity (1-100):', currentItem ? currentItem.quantity : 1);
+      if (newQuantityStr !== null) {
+        const newQuantity = Number(newQuantityStr);
+        if (newQuantity > 0 && newQuantity <= 100) {
+          updateQuantity(productId, newQuantity);
+          renderOrderSummary();
+        } else if (newQuantity === 0) {
+          removeFromCart(productId);
+          renderOrderSummary();
+        }
+      }
     });
   });
 }
