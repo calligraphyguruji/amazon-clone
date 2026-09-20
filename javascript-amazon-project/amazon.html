@@ -1,62 +1,574 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <title>Amazon Project</title>
+    <meta charset="UTF-8">
+    <title>Online Shopping site in India: Shop Online for Mobiles, Books, Watches, Shoes and More - Amazon.in</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- This code is needed for responsive design to work.
-      (Responsive design = make the website look good on
-      smaller screen sizes like a phone or a tablet). -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- Load a font called Roboto from Google Fonts. -->
+    <!-- Google Fonts: Roboto -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;800&display=swap" rel="stylesheet">
 
-    <!-- Here are the CSS files for this page. -->
+    <!-- CSS stylesheets -->
     <link rel="stylesheet" href="styles/shared/general.css">
     <link rel="stylesheet" href="styles/shared/amazon-header.css">
     <link rel="stylesheet" href="styles/pages/amazon.css">
   </head>
   <body>
-    <div class="amazon-header">
+    <!-- Top Navigation Belt -->
+    <header class="amazon-header">
       <div class="amazon-header-left-section">
-        <a href="amazon.html" class="header-link">
-          <img class="amazon-logo"
-            src="images/amazon-logo-white.png">
-          <img class="amazon-mobile-logo"
-            src="images/amazon-mobile-logo-white.png">
+        <a href="amazon.html" class="header-link logo-container" title="Amazon India">
+          <img class="amazon-logo" src="images/amazon-logo-white.png" alt="Amazon Logo">
+          <span class="amazon-in-suffix">.in</span>
+          <img class="amazon-mobile-logo" src="images/amazon-mobile-logo-white.png" alt="Amazon Logo">
         </a>
+
+        <!-- Location Widget -->
+        <div class="header-link nav-location js-location-btn" title="Choose your delivery location">
+          <span class="nav-location-icon">📍</span>
+          <div class="nav-location-text">
+            <span class="nav-location-line-1 js-header-location-name">Delivering to Greater N... 201310</span>
+            <span class="nav-location-line-2">Update location</span>
+          </div>
+        </div>
       </div>
 
+      <!-- Search Section -->
       <div class="amazon-header-middle-section">
-        <input class="search-bar" type="text" placeholder="Search">
+        <form class="search-bar-form js-search-form" onsubmit="return false;">
+          <select class="search-category-select js-search-category">
+            <option value="all" selected>All</option>
+            <option value="electronics">Electronics</option>
+            <option value="apparel">Fashion</option>
+            <option value="kitchen">Home &amp; Kitchen</option>
+            <option value="sports">Sports</option>
+            <option value="appliances">Appliances</option>
+            <option value="daily">Daily Needs</option>
+          </select>
 
-        <button class="search-button">
-          <img class="search-icon" src="images/icons/search-icon.png">
-        </button>
+          <input class="search-bar js-search-input" type="text" placeholder="Search Amazon.in" autocomplete="off">
+
+          <button class="search-button js-search-button" type="submit" aria-label="Search">
+            <img class="search-icon" src="images/icons/search-icon.png" alt="Search">
+          </button>
+        </form>
       </div>
 
+      <!-- Right Nav Links -->
       <div class="amazon-header-right-section">
-        <a class="orders-link header-link" href="orders.html">
-          <span class="returns-text">Returns</span>
-          <span class="orders-text">& Orders</span>
+        <!-- Language Selector -->
+        <div class="header-link nav-lang-link js-lang-btn">
+          <span class="flag-icon">🇮🇳</span>
+          <span class="lang-code">EN</span>
+          <span class="nav-arrow">▼</span>
+
+          <div class="lang-dropdown-menu js-lang-dropdown">
+            <div class="lang-dropdown-item"><input type="radio" name="lang" checked> English - EN</div>
+            <div class="lang-dropdown-item"><input type="radio" name="lang"> हिन्दी - HI</div>
+            <div class="lang-dropdown-item"><input type="radio" name="lang"> தமிழ் - TA</div>
+            <div class="lang-dropdown-item"><input type="radio" name="lang"> తెలుగు - TE</div>
+            <div class="lang-dropdown-item"><input type="radio" name="lang"> ಕನ್ನಡ - KN</div>
+          </div>
+        </div>
+
+        <!-- Account & Lists -->
+        <div class="header-link account-link js-account-link">
+          <span class="nav-line-1">Hello, sign in</span>
+          <span class="nav-line-2">Account &amp; Lists <span class="nav-arrow">▼</span></span>
+
+          <div class="nav-dropdown-menu js-account-dropdown">
+            <div class="account-dropdown-signin">
+              <a href="checkout.html"><button class="account-signin-btn">Sign in</button></a>
+              <div class="account-new-customer">New customer? <a href="#">Start here.</a></div>
+            </div>
+            <div class="account-dropdown-grid">
+              <div class="account-dropdown-col">
+                <h4>Your Lists</h4>
+                <ul>
+                  <li><a href="#">Create a Wish List</a></li>
+                  <li><a href="#">Wish from Any Website</a></li>
+                  <li><a href="#">Baby Wishlist</a></li>
+                  <li><a href="#">Discover Your Style</a></li>
+                </ul>
+              </div>
+              <div class="account-dropdown-col">
+                <h4>Your Account</h4>
+                <ul>
+                  <li><a href="#">Your Account</a></li>
+                  <li><a href="orders.html">Your Orders</a></li>
+                  <li><a href="#">Your Wish List</a></li>
+                  <li><a href="#">Your Recommendations</a></li>
+                  <li><a href="#">Your Prime Membership</a></li>
+                  <li><a href="checkout.html">Switch Accounts</a></li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Returns & Orders -->
+        <a class="header-link orders-link" href="orders.html">
+          <span class="nav-line-1">Returns</span>
+          <span class="nav-line-2">&amp; Orders</span>
         </a>
 
-        <a class="cart-link header-link" href="checkout.html">
-          <img class="cart-icon" src="images/icons/cart-icon.png">
-          <div class="cart-quantity js-cart-quantity">0</div>
+        <!-- Cart -->
+        <a class="header-link cart-link" href="checkout.html" title="Shopping Cart">
+          <div class="cart-icon-wrapper">
+            <img class="cart-icon" src="images/icons/cart-icon.png" alt="Cart">
+            <div class="cart-quantity js-cart-quantity">0</div>
+          </div>
           <div class="cart-text">Cart</div>
         </a>
       </div>
-    </div>
-    
-    <div class="main">
-      <div class="products-grid 
-        js-products-grid">       
+    </header>
+
+    <!-- Sub-navigation Bar -->
+    <nav class="amazon-subnav">
+      <div class="subnav-link subnav-all-btn js-sidebar-toggle">
+        <span class="subnav-all-icon">☰</span>
+        <span>All</span>
+      </div>
+      <a class="subnav-link js-subnav-filter" data-category="all" href="#catalog">Fresh <span class="subnav-dropdown-arrow">▼</span></a>
+      <a class="subnav-link js-subnav-filter" data-category="all" href="#catalog">Amazon Pay</a>
+      <a class="subnav-link js-subnav-filter" data-category="electronics" href="#catalog">Mobiles</a>
+      <a class="subnav-link js-subnav-filter" data-category="deals" href="#catalog">Today's Deals</a>
+      <a class="subnav-link js-subnav-filter" data-category="all" href="#catalog">Coupons</a>
+      <a class="subnav-link js-subnav-filter" data-category="all" href="#catalog">Flights</a>
+      <a class="subnav-link js-subnav-filter" data-category="electronics" href="#catalog">Electronics</a>
+      <a class="subnav-link js-subnav-filter" data-category="sports" href="#catalog">Video Games</a>
+      <a class="subnav-link js-subnav-filter" data-category="electronics" href="#catalog">Computers</a>
+      <a class="subnav-link js-subnav-filter" data-category="all" href="#catalog">New Releases</a>
+      <a class="subnav-link js-subnav-filter" data-category="bestseller" href="#catalog">Bestsellers</a>
+      <a class="subnav-link js-subnav-filter" data-category="all" href="#catalog">Baby</a>
+      <a class="subnav-link js-subnav-filter" data-category="apparel" href="#catalog">Fashion</a>
+      <a class="subnav-link js-subnav-filter" data-category="kitchen" href="#catalog">Home &amp; Kitchen</a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main">
+      <!-- HERO DEALS SECTION (Matching amazon.in screenshot) -->
+      <section class="hero-deals-section">
+        <div class="deals-carousel-wrapper">
+          <div class="carousel-scroll-btn prev-btn js-carousel-prev" aria-label="Previous Deal">‹</div>
+          <div class="carousel-scroll-btn next-btn js-carousel-next" aria-label="Next Deal">›</div>
+
+          <div class="deals-carousel js-deals-carousel">
+            <!-- Deal Card 1: Bluetooth speakers -->
+            <div class="deal-card js-deal-card-filter" data-category="electronics" data-keyword="speaker">
+              <div class="deal-card-header">
+                <div class="deal-card-title">Up to 60% off</div>
+                <div class="deal-card-subtitle">Bluetooth speakers</div>
+                <div class="deal-card-tags">
+                  <span>ZEBRONICS</span>
+                  <span>JBL</span>
+                  <span>boAt</span>
+                </div>
+              </div>
+              <div class="deal-card-image-wrap">
+                <img class="deal-card-image" src="images/products/knit-athletic-sneakers-gray.jpg" alt="Bluetooth speakers">
+              </div>
+              <div class="deal-card-bank-banner">
+                <span class="bank-logo-badge">BOBCARD</span>
+                <span class="bank-logo-badge">HDFC BANK</span>
+                <div class="bank-banner-text">
+                  Up to 10% Instant Discount*
+                  <div class="bank-banner-sub">*T&amp;C apply</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deal Card 2: Bras, briefs & more -->
+            <div class="deal-card js-deal-card-filter" data-category="apparel" data-keyword="clothing">
+              <div class="deal-card-header">
+                <div class="deal-card-title">Under ₹399</div>
+                <div class="deal-card-subtitle">Bras, briefs &amp; more</div>
+                <div class="deal-card-tags">
+                  <span>Top brands</span>
+                  <span>Latest trends</span>
+                </div>
+              </div>
+              <div class="deal-card-image-wrap">
+                <img class="deal-card-image" src="images/products/athletic-cotton-socks-6-pairs.jpg" alt="Apparel Essentials">
+              </div>
+              <div class="deal-card-bank-banner">
+                <span class="bank-logo-badge icici">ICICI</span>
+                <div class="bank-banner-text">
+                  Unlimited 5% cashback*
+                  <div class="bank-banner-sub">with Amazon Pay ICICI Bank credit card</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deal Card 3: Monsoon home essentials -->
+            <div class="deal-card js-deal-card-filter" data-category="kitchen" data-keyword="home">
+              <div class="deal-card-header">
+                <div class="deal-card-title">Starting ₹149</div>
+                <div class="deal-card-subtitle">Monsoon home essentials</div>
+                <div class="deal-card-tags">
+                  <span>amazon basics</span>
+                </div>
+              </div>
+              <div class="deal-card-image-wrap">
+                <img class="deal-card-image" src="images/products/umbrella.jpg" alt="Home Essentials">
+              </div>
+              <div class="deal-card-bank-banner">
+                <span class="bank-logo-badge">HDFC BANK</span>
+                <div class="bank-banner-text">
+                  10% Instant Discount*
+                  <div class="bank-banner-sub">On Credit Card EMI Transactions</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deal Card 4: Kitchen finds -->
+            <div class="deal-card js-deal-card-filter" data-category="kitchen" data-keyword="kitchen">
+              <div class="deal-card-header">
+                <div class="deal-card-title">Starting ₹99</div>
+                <div class="deal-card-subtitle">Interesting kitchen finds for you</div>
+                <div class="deal-card-tags">
+                  <span>Wide selection</span>
+                  <span>Latest trends</span>
+                </div>
+              </div>
+              <div class="deal-card-image-wrap">
+                <img class="deal-card-image" src="images/products/non-stick-cooking-set-15-pieces.webp" alt="Kitchen Finds">
+              </div>
+              <div class="deal-card-bank-banner">
+                <span class="bank-logo-badge">IDFC BANK</span>
+                <div class="bank-banner-text">
+                  Up to 10% Instant Discount*
+                  <div class="bank-banner-sub">*T&amp;C apply</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deal Card 5: Bestselling watches -->
+            <div class="deal-card js-deal-card-filter" data-category="apparel" data-keyword="accessories">
+              <div class="deal-card-header">
+                <div class="deal-card-title">Under ₹499</div>
+                <div class="deal-card-subtitle">Bestselling watches &amp; accessories</div>
+                <div class="deal-card-tags">
+                  <span>Top brands</span>
+                  <span>Latest trends</span>
+                </div>
+              </div>
+              <div class="deal-card-image-wrap">
+                <img class="deal-card-image" src="images/products/men-navigator-sunglasses-brown.jpg" alt="Bestselling Accessories">
+              </div>
+              <div class="deal-card-bank-banner">
+                <span class="bank-logo-badge icici">ICICI</span>
+                <div class="bank-banner-text">
+                  Unlimited 5% cashback*
+                  <div class="bank-banner-sub">with Amazon Pay ICICI Bank credit card</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Deal Card 6: Top Trends -->
+            <div class="deal-card js-deal-card-filter" data-category="apparel" data-keyword="sweaters">
+              <div class="deal-card-header">
+                <div class="deal-card-title">Under ₹799</div>
+                <div class="deal-card-subtitle">Trending hoodies &amp; sportswear</div>
+                <div class="deal-card-tags">
+                  <span>Premium fit</span>
+                  <span>Fast delivery</span>
+                </div>
+              </div>
+              <div class="deal-card-image-wrap">
+                <img class="deal-card-image" src="images/products/plain-hooded-fleece-sweatshirt-yellow.jpg" alt="Fleece Hoodies">
+              </div>
+              <div class="deal-card-bank-banner">
+                <span class="bank-logo-badge basics">BASICS</span>
+                <div class="bank-banner-text">
+                  Great Indian Festival Deals
+                  <div class="bank-banner-sub">Flat ₹100 cashback on ₹999+</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- MULTI-ITEM 4-COLUMN FEATURE SECTION (From screenshot) -->
+      <section class="feature-section">
+        <div class="feature-cards-grid">
+          <!-- Box 1 -->
+          <div class="feature-box">
+            <div class="feature-box-title">
+              <span>Deals on Bluetooth speakers for your home</span>
+              <span class="arrow">›</span>
+            </div>
+            <div class="feature-box-items-2col">
+              <div class="feature-mini-item js-feature-click" data-category="electronics" data-keyword="speaker">
+                <div class="feature-mini-img-wrap">
+                  <img class="feature-mini-img" src="images/products/knit-athletic-sneakers-gray.jpg" alt="JBL Partybox">
+                </div>
+                <div class="feature-mini-label">Party speakers</div>
+              </div>
+              <div class="feature-mini-item js-feature-click" data-category="electronics" data-keyword="speaker">
+                <div class="feature-mini-img-wrap">
+                  <img class="feature-mini-img" src="images/products/intermediate-composite-basketball.jpg" alt="Smart speaker">
+                </div>
+                <div class="feature-mini-label">Smart assistants</div>
+              </div>
+            </div>
+            <a href="#catalog" class="feature-box-link js-subnav-filter" data-category="electronics">See all offers</a>
+          </div>
+
+          <!-- Box 2 -->
+          <div class="feature-box">
+            <div class="feature-box-title">
+              <span>Up to 75% off | Best deals on mobile accessories</span>
+              <span class="arrow">›</span>
+            </div>
+            <div class="feature-box-items-2col">
+              <div class="feature-mini-item js-feature-click" data-category="electronics" data-keyword="cases">
+                <div class="feature-mini-img-wrap">
+                  <img class="feature-mini-img" src="images/products/round-airtight-food-storage-containers.jpg" alt="TWS Earbuds">
+                </div>
+                <div class="feature-mini-label">TWS Earbuds</div>
+              </div>
+              <div class="feature-mini-item js-feature-click" data-category="electronics" data-keyword="cases">
+                <div class="feature-mini-img-wrap">
+                  <img class="feature-mini-img" src="images/products/blackout-curtains-black.jpg" alt="Protective covers">
+                </div>
+                <div class="feature-mini-label">Protective covers</div>
+              </div>
+            </div>
+            <a href="#catalog" class="feature-box-link js-subnav-filter" data-category="electronics">Explore accessories</a>
+          </div>
+
+          <!-- Box 3 -->
+          <div class="feature-box">
+            <div class="feature-box-title">
+              <span>Daily needs | Starting ₹199</span>
+              <span class="arrow">›</span>
+            </div>
+            <div class="feature-box-items-2col">
+              <div class="feature-mini-item js-feature-click" data-category="daily" data-keyword="cleaning">
+                <div class="feature-mini-img-wrap">
+                  <img class="feature-mini-img" src="images/products/liquid-laundry-detergent-plain.jpg" alt="Laundry Detergent">
+                </div>
+                <div class="feature-mini-label">Laundry &amp; washing</div>
+              </div>
+              <div class="feature-mini-item js-feature-click" data-category="daily" data-keyword="kitchen">
+                <div class="feature-mini-img-wrap">
+                  <img class="feature-mini-img" src="images/products/facial-tissue-2-ply-18-boxes.jpg" alt="Paper tissues">
+                </div>
+                <div class="feature-mini-label">Tissues &amp; wipes</div>
+              </div>
+            </div>
+            <a href="#catalog" class="feature-box-link js-subnav-filter" data-category="daily">Shop daily essentials</a>
+          </div>
+
+          <!-- Box 4 -->
+          <div class="feature-box">
+            <div class="feature-box-title">
+              <span>Starting ₹149 | Bestselling headphones, earbuds &amp; more</span>
+              <span class="arrow">›</span>
+            </div>
+            <div class="feature-box-items-2col">
+              <div class="feature-mini-item js-feature-click" data-category="electronics" data-keyword="sports">
+                <div class="feature-mini-img-wrap">
+                  <img class="feature-mini-img" src="images/products/knit-athletic-sneakers-pink.webp" alt="Wireless earphones">
+                </div>
+                <div class="feature-mini-label">Neckbands</div>
+              </div>
+              <div class="feature-mini-item js-feature-click" data-category="electronics" data-keyword="sports">
+                <div class="feature-mini-img-wrap">
+                  <img class="feature-mini-img" src="images/products/round-sunglasses-black.jpg" alt="Over-ear headphones">
+                </div>
+                <div class="feature-mini-label">Over-ear headphones</div>
+              </div>
+            </div>
+            <a href="#catalog" class="feature-box-link js-subnav-filter" data-category="electronics">See more headphones</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRODUCTS CATALOG SECTION -->
+      <section class="catalog-section" id="catalog">
+        <div class="catalog-header-bar">
+          <div class="catalog-title-wrap">
+            <h2 class="catalog-title js-catalog-title">Explore Amazon.in Deals</h2>
+            <span class="catalog-count-label js-catalog-count">Showing all products</span>
+          </div>
+
+          <!-- Filter Pills -->
+          <div class="catalog-filter-pills">
+            <button class="filter-pill active js-filter-pill" data-category="all">All Deals</button>
+            <button class="filter-pill js-filter-pill" data-category="apparel">Fashion &amp; Apparel</button>
+            <button class="filter-pill js-filter-pill" data-category="kitchen">Home &amp; Kitchen</button>
+            <button class="filter-pill js-filter-pill" data-category="sports">Sports &amp; Fitness</button>
+            <button class="filter-pill js-filter-pill" data-category="under500">Under ₹500</button>
+            <button class="filter-pill js-filter-pill" data-category="prime">Prime Eligible</button>
+          </div>
+        </div>
+
+        <!-- Dynamic Products Grid -->
+        <div class="products-grid js-products-grid">
+          <!-- Dynamically populated by amazon.js -->
+        </div>
+      </section>
+    </main>
+
+    <!-- Side Navigation Drawer (☰ All Menu) -->
+    <div class="sidebar-overlay js-sidebar-overlay"></div>
+    <button class="sidebar-close-btn js-sidebar-close-btn" aria-label="Close Menu">✕</button>
+
+    <aside class="amazon-sidebar js-amazon-sidebar">
+      <div class="sidebar-header">
+        <span class="sidebar-user-avatar">👤</span>
+        <span class="sidebar-greeting">Hello, sign in</span>
+      </div>
+
+      <div class="sidebar-content">
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Trending</div>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="bestseller" href="#catalog">Best Sellers <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="all" href="#catalog">New Releases <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="deals" href="#catalog">Movers and Shakers <span class="arrow">›</span></a>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Digital Content &amp; Devices</div>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="electronics" href="#catalog">Amazon Prime Video <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="electronics" href="#catalog">Echo &amp; Alexa <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="electronics" href="#catalog">Fire TV <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="all" href="#catalog">Amazon Prime Music <span class="arrow">›</span></a>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Shop by Category</div>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="electronics" href="#catalog">Mobiles, Computers <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="appliances" href="#catalog">TV, Appliances, Electronics <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="apparel" href="#catalog">Men's Fashion <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="apparel" href="#catalog">Women's Fashion <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="kitchen" href="#catalog">Home, Kitchen, Pets <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="sports" href="#catalog">Sports, Fitness, Bags, Luggage <span class="arrow">›</span></a>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Programs &amp; Features</div>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="all" href="#catalog">Amazon Pay <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="all" href="#catalog">Gift Cards &amp; Mobile Recharges <span class="arrow">›</span></a>
+          <a class="sidebar-menu-item js-sidebar-link" data-category="deals" href="#catalog">Today's Deals <span class="arrow">›</span></a>
+        </div>
+
+        <div class="sidebar-section">
+          <div class="sidebar-section-title">Help &amp; Settings</div>
+          <a class="sidebar-menu-item" href="orders.html">Your Orders</a>
+          <a class="sidebar-menu-item" href="checkout.html">Your Account</a>
+          <a class="sidebar-menu-item" href="#">Customer Service</a>
+          <a class="sidebar-menu-item" href="checkout.html">Sign in</a>
+        </div>
+      </div>
+    </aside>
+
+    <!-- Location Modal -->
+    <div class="modal-overlay js-location-modal-overlay">
+      <div class="location-modal">
+        <div class="location-modal-header">
+          <h3>Choose your location</h3>
+          <button class="location-modal-close js-location-modal-close" aria-label="Close">✕</button>
+        </div>
+        <div class="location-modal-body">
+          <p class="location-modal-desc">
+            Select a delivery location to see product availability and delivery options for your area.
+          </p>
+
+          <form class="pincode-input-row js-pincode-form" onsubmit="return false;">
+            <input class="pincode-input js-pincode-input" type="text" placeholder="Enter an Indian pincode" maxlength="6">
+            <button class="pincode-apply-btn js-pincode-apply-btn" type="submit">Apply</button>
+          </form>
+
+          <div style="font-size: 13px; font-weight: 700; margin-top: 15px; margin-bottom: 8px;">
+            Or choose a major Indian city:
+          </div>
+
+          <div class="city-quick-pills">
+            <button class="city-pill js-quick-city" data-location="Greater Noida 201310">Greater Noida (201310)</button>
+            <button class="city-pill js-quick-city" data-location="New Delhi 110001">New Delhi (110001)</button>
+            <button class="city-pill js-quick-city" data-location="Mumbai 400001">Mumbai (400001)</button>
+            <button class="city-pill js-quick-city" data-location="Bengaluru 560001">Bengaluru (560001)</button>
+            <button class="city-pill js-quick-city" data-location="Hyderabad 500001">Hyderabad (500001)</button>
+            <button class="city-pill js-quick-city" data-location="Chennai 600001">Chennai (600001)</button>
+          </div>
+        </div>
       </div>
     </div>
-    
+
+    <!-- Authentic Amazon Footer -->
+    <footer class="amazon-footer">
+      <div class="back-to-top-btn js-back-to-top">
+        Back to top
+      </div>
+
+      <div class="footer-main">
+        <div class="footer-col">
+          <div class="footer-col-title">Get to Know Us</div>
+          <ul class="footer-links-list">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press Releases</a></li>
+            <li><a href="#">Amazon Science</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Connect with Us</div>
+          <ul class="footer-links-list">
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Instagram</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Make Money with Us</div>
+          <ul class="footer-links-list">
+            <li><a href="#">Sell on Amazon</a></li>
+            <li><a href="#">Sell under Amazon Accelerator</a></li>
+            <li><a href="#">Protect and Build Your Brand</a></li>
+            <li><a href="#">Amazon Global Selling</a></li>
+            <li><a href="#">Become an Affiliate</a></li>
+            <li><a href="#">Fulfilment by Amazon</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <div class="footer-col-title">Let Us Help You</div>
+          <ul class="footer-links-list">
+            <li><a href="#">COVID-19 and Amazon</a></li>
+            <li><a href="checkout.html">Your Account</a></li>
+            <li><a href="orders.html">Returns Centre</a></li>
+            <li><a href="#">100% Purchase Protection</a></li>
+            <li><a href="#">Amazon App Download</a></li>
+            <li><a href="#">Help</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div class="footer-bottom-logo">
+          <img src="images/amazon-logo-white.png" alt="Amazon" style="width: 80px;">
+          <div class="footer-country-pill">
+            <span>🌐 English</span>
+          </div>
+          <div class="footer-country-pill">
+            <span>🇮🇳 India</span>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          &copy; 1996–2026, Amazon.com, Inc. or its affiliates
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
     <script src="data/products.js"></script>
     <script type="module" src="scripts/amazon.js"></script>
   </body>
