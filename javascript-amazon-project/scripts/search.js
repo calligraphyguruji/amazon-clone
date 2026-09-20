@@ -20,13 +20,85 @@ const activeFilters = {
 
 const addedMessageTimeouts = {};
 
-// =========================================================
-// 1. FILTER & SORT PRODUCTS
-// =========================================================
-function getFilteredAndSortedProducts() {
+// Brand inference based on product data
+function getProductBrand(product) {
+  if (product.brand) return product.brand;
+  const name = product.name.toLowerCase();
+  const kws = (product.keywords || []).map(k => k.toLowerCase());
+
+  // Tech / Mobile / Electronics
+  if (name.includes('iphone') || name.includes('apple') || kws.includes('apple')) return 'Apple';
+  if (name.includes('samsung') || kws.includes('samsung')) return 'Samsung';
+  if (name.includes('oneplus') || kws.includes('oneplus')) return 'OnePlus';
+  if (name.includes('sony') || kws.includes('sony')) return 'Sony';
+  if (name.includes('boat') || kws.includes('boat')) return 'boAt';
+  if (name.includes('noise') || kws.includes('noise')) return 'Noise';
+  if (name.includes('puma') || kws.includes('puma')) return 'Puma';
+  if (name.includes('pigeon') || kws.includes('pigeon')) return 'Pigeon';
+  if (name.includes('amazon basics') || name.includes('basics')) return 'Amazon Basics';
+
+  // Clothing & Apparel
+  if (kws.includes('tshirts') || kws.includes('shirts') || kws.includes('hoodies') || kws.includes('sweaters') || kws.includes('apparel') || kws.includes('clothing')) {
+    if (name.includes('polo')) return 'US Polo Assn.';
+    if (name.includes('fleece') || name.includes('hooded')) return 'Van Heusen';
+    if (name.includes('cotton') || name.includes('adults')) return 'Allen Solly';
+    if (name.includes('chiffon') || name.includes('beachwear')) return 'Biba';
+    if (name.includes('jogger') || name.includes('sweatpant')) return 'Jockey';
+    if (name.includes('chino') || name.includes('pants') || name.includes('shorts')) return 'Peter England';
+    if (name.includes('socks')) return 'Jockey';
+    return 'Amazon Brand - Symbol';
+  }
+
+  // Footwear
+  if (kws.includes('shoes') || kws.includes('sneakers') || kws.includes('sandals') || kws.includes('footwear')) {
+    if (name.includes('puma')) return 'Puma';
+    if (name.includes('ballet')) return 'Bata';
+    if (name.includes('sandals')) return 'Sparx';
+    return 'Red Tape';
+  }
+
+  // Appliances
+  if (kws.includes('toaster') || kws.includes('blender') || kws.includes('kettle') || kws.includes('coffeemakers') || kws.includes('appliances')) {
+    if (name.includes('pigeon')) return 'Pigeon';
+    if (name.includes('kettle')) return 'Prestige';
+    if (name.includes('blender')) return 'Philips';
+    if (name.includes('toaster')) return 'Morphy Richards';
+    if (name.includes('coffeemaker')) return 'Wonderchef';
+    return 'Bajaj';
+  }
+
+  // Kitchen & Dining
+  if (kws.includes('cookware') || kws.includes('baking') || kws.includes('plate') || kws.includes('dishes') || kws.includes('containers')) {
+    if (name.includes('cookware')) return 'Prestige';
+    if (name.includes('plate') || name.includes('bowl')) return 'Cello';
+    if (name.includes('storage') || name.includes('containers')) return 'Borosil';
+    return 'Solimo';
+  }
+
+  // Home & Bedding
+  if (kws.includes('towels') || kws.includes('curtains') || kws.includes('bed sheets') || kws.includes('sheets') || kws.includes('duvet') || kws.includes('bathmat')) {
+    return 'Spaces';
+  }
+
+  // Daily Needs & Household
+  if (kws.includes('cleaning') || kws.includes('laundry') || kws.includes('detergent') || kws.includes('tissues') || kws.includes('garbage')) {
+    if (name.includes('laundry') || name.includes('detergent')) return 'Surf Excel';
+    if (name.includes('tissue')) return 'Origami';
+    return 'Amazon Basics';
+  }
+
+  if (kws.includes('basketball') || kws.includes('sports')) return 'Spalding';
+  if (kws.includes('sunglasses')) return 'Fastrack';
+  if (kws.includes('earrings') || kws.includes('jewelry')) return 'Giva';
+
+  return 'Amazon Basics';
+}
+
+// Get base products matching current search query and category (unconstrained by sidebar filters)
+function getBaseMatchingProducts() {
   if (typeof products === 'undefined' || !Array.isArray(products)) return [];
 
-  let result = products.filter((product) => {
+  return products.filter((product) => {
     // 1. Query search
     if (currentQuery.trim() !== '') {
       const q = currentQuery.toLowerCase().trim();
@@ -66,40 +138,104 @@ function getFilteredAndSortedProducts() {
       }
     }
 
-    // 3. Deals Only
+    return true;
+  });
+}
+
+// Dynamically render sidebar brands list based on currently matched products
+function renderDynamicBrandFilters() {
+  const brandsListEl = document.querySelector('.js-brands-filter-list');
+  const brandsGroupEl = document.querySelector('.js-brands-filter-group');
+  if (!brandsListEl) return;
+
+  const baseProducts = getBaseMatchingProducts();
+  const brandCounts = {};
+
+  baseProducts.forEach((product) => {
+    const brand = getProductBrand(product);
+    brandCounts[brand] = (brandCounts[brand] || 0) + 1;
+  });
+
+  const availableBrands = Object.keys(brandCounts).sort((a, b) => brandCounts[b] - brandCounts[a]);
+
+  // Clean activeFilters.brands if any selected brand is no longer in availableBrands
+  activeFilters.brands = activeFilters.brands.filter(b => availableBrands.includes(b));
+
+  if (availableBrands.length === 0) {
+    if (brandsGroupEl) brandsGroupEl.style.display = 'none';
+    brandsListEl.innerHTML = '';
+    return;
+  }
+
+  if (brandsGroupEl) brandsGroupEl.style.display = 'block';
+
+  let brandsHTML = '';
+  availableBrands.forEach((brand) => {
+    const isChecked = activeFilters.brands.includes(brand);
+    const safeId = 'brand-' + brand.toLowerCase().replace(/[^a-z0-9]/g, '-');
+    brandsHTML += `
+      <li class="filter-item">
+        <input type="checkbox" id="${safeId}" class="js-filter-checkbox js-dynamic-brand-cb" data-filter="brand" value="${brand}" ${isChecked ? 'checked' : ''}>
+        <label for="${safeId}">${brand}</label>
+      </li>
+    `;
+  });
+
+  brandsListEl.innerHTML = brandsHTML;
+
+  // Re-bind brand checkbox event listeners
+  brandsListEl.querySelectorAll('.js-dynamic-brand-cb').forEach((cb) => {
+    cb.addEventListener('change', () => {
+      const val = cb.value;
+      if (cb.checked) {
+        if (!activeFilters.brands.includes(val)) activeFilters.brands.push(val);
+      } else {
+        activeFilters.brands = activeFilters.brands.filter(b => b !== val);
+      }
+      renderSearchResults();
+    });
+  });
+}
+
+// =========================================================
+// 1. FILTER & SORT PRODUCTS
+// =========================================================
+function getFilteredAndSortedProducts() {
+  const baseProducts = getBaseMatchingProducts();
+
+  let result = baseProducts.filter((product) => {
+    // 1. Deals Only
     if (onlyDeals) {
       if ((product.priceCents / 100) >= 2000 && product.rating.stars < 4.5) {
         return false;
       }
     }
 
-    // 4. Brands
+    // 2. Dynamic Brands Filter
     if (activeFilters.brands.length > 0) {
-      const matchesBrand = activeFilters.brands.some((b) => {
-        const brandLower = b.toLowerCase();
-        return product.name.toLowerCase().includes(brandLower) ||
-          (product.keywords && product.keywords.some(k => k.toLowerCase() === brandLower));
-      });
-      if (!matchesBrand) return false;
+      const productBrand = getProductBrand(product);
+      if (!activeFilters.brands.includes(productBrand)) {
+        return false;
+      }
     }
 
-    // 5. Prime Only
+    // 3. Prime Only
     if (activeFilters.primeOnly && product.rating.stars < 4.5) {
       return false;
     }
 
-    // 6. Rating
+    // 4. Rating
     if (activeFilters.minRating > 0 && product.rating.stars < activeFilters.minRating) {
       return false;
     }
 
-    // 7. Price
+    // 5. Price
     const priceRupees = product.priceCents / 100;
     if (priceRupees < activeFilters.minPrice || priceRupees > activeFilters.maxPrice) {
       return false;
     }
 
-    // 8. Discount
+    // 6. Discount
     if (activeFilters.minDiscount > 0) {
       const originalMrp = (product.priceCents * 1.55) / 100;
       const discount = Math.round(((originalMrp - priceRupees) / originalMrp) * 100);
@@ -127,6 +263,7 @@ function getFilteredAndSortedProducts() {
 // 2. RENDER SEARCH RESULTS
 // =========================================================
 function renderSearchResults() {
+  renderDynamicBrandFilters();
   const filteredProducts = getFilteredAndSortedProducts();
   const resultsGrid = document.querySelector('.js-search-results-grid');
   const resultsInfo = document.querySelector('.js-search-results-info');
@@ -354,19 +491,13 @@ function setupFilterListeners() {
     });
   }
 
-  // Checkbox filters (Brands, Prime, POD)
-  document.querySelectorAll('.js-filter-checkbox').forEach((checkbox) => {
+  // Checkbox filters (Prime, Delivery, POD)
+  document.querySelectorAll('.js-filter-checkbox:not(.js-dynamic-brand-cb)').forEach((checkbox) => {
     checkbox.addEventListener('change', () => {
       const type = checkbox.dataset.filter;
       const val = checkbox.value;
 
-      if (type === 'brand') {
-        if (checkbox.checked) {
-          if (!activeFilters.brands.includes(val)) activeFilters.brands.push(val);
-        } else {
-          activeFilters.brands = activeFilters.brands.filter(b => b !== val);
-        }
-      } else if (type === 'prime') {
+      if (type === 'prime') {
         activeFilters.primeOnly = checkbox.checked;
       }
 
