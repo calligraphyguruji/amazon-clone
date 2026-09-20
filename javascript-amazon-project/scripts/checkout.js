@@ -65,7 +65,7 @@ function renderOrderSummary() {
         <div style="font-size: 20px; font-weight: 500; margin-bottom: 15px;">
           Your Amazon Cart is empty.
         </div>
-        <a href="amazon.html">
+        <a href="index.html">
           <button class="button-primary" style="padding: 10px 25px; cursor: pointer;">
             Explore Products
           </button>

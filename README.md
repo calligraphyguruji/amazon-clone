@@ -16,7 +16,8 @@ This project replicates core user interface and shopping flows of Amazon, includ
 - **Product Quantity & Add to Cart**: Allows users to select product quantities and add items to their shopping cart.
 - **Responsive Layout**: Designed for seamless viewing across mobile, tablet, and desktop screens.
 - **Multi-Page Architecture**:
-  - **Storefront (`amazon.html`)**: Product grid browsing, search bar, and navigation header with live cart count.
+  - **Storefront (`index.html`)**: Product grid browsing, search bar, hero banners, and navigation header with live cart count.
+  - **Search Results (`search.html`)**: Amazon India search results layout with dynamic filtering, sorting, and pagination.
   - **Checkout (`checkout.html`)**: Review items, delivery options, and payment order summary.
   - **Orders (`orders.html`)**: View placed orders, order dates, totals, and "Buy Again" options.
   - **Order Tracking (`tracking.html`)**: Delivery status progress tracker and estimated arrival details.
@@ -39,7 +40,8 @@ This project replicates core user interface and shopping flows of Amazon, includ
 Amazon-Clone/
 │
 ├── javascript-amazon-project/
-│   ├── amazon.html               # Main store page with product catalog
+│   ├── index.html                # Main storefront homepage
+│   ├── search.html               # Search results and filtering page
 │   ├── checkout.html             # Checkout & order review page
 │   ├── orders.html               # Order history page
 │   ├── tracking.html             # Package delivery tracking page
@@ -51,7 +53,8 @@ Amazon-Clone/
 │   │   └── products.js           # JavaScript product dataset
 │   │
 │   ├── scripts/
-│   │   └── amazon.js             # DOM manipulation & product rendering logic
+│   │   ├── amazon.js             # DOM manipulation & storefront logic
+│   │   └── search.js             # Search page filtering & sorting logic
 │   │
 │   ├── styles/
 │   │   ├── shared/
@@ -59,6 +62,7 @@ Amazon-Clone/
 │   │   │   └── amazon-header.css # Header styles across pages
 │   │   └── pages/
 │   │       ├── amazon.css        # Homepage & product grid styles
+│   │       ├── search.css        # Search results page styles
 │   │       ├── orders.css        # Orders page layout
 │   │       ├── tracking.css      # Tracking progress bar styles
 │   │       └── checkout/
@@ -78,7 +82,7 @@ No build tools or package managers required. You can run the project locally usi
 
 ### Option 1: Live Server (VS Code Extension)
 1. Open the project folder in **Visual Studio Code**.
-2. Right-click on `javascript-amazon-project/amazon.html`.
+2. Right-click on `javascript-amazon-project/index.html`.
 3. Select **"Open with Live Server"**.
 
 ### Option 2: Using Python HTTP Server
@@ -88,7 +92,7 @@ Run the following in your terminal from the project root:
 cd javascript-amazon-project
 python3 -m http.server 3000
 ```
-Then open `http://localhost:3000/amazon.html` in your browser.
+Then open `http://localhost:3000/index.html` in your browser.
 
 ### Option 3: Using Node.js (`npx serve`)
 ```bash
