@@ -39,38 +39,38 @@ This project replicates core user interface and shopping flows of Amazon, includ
 ```text
 Amazon-Clone/
 │
-├── javascript-amazon-project/
-│   ├── index.html                # Main storefront homepage
-│   ├── search.html               # Search results and filtering page
-│   ├── checkout.html             # Checkout & order review page
-│   ├── orders.html               # Order history page
-│   ├── tracking.html             # Package delivery tracking page
-│   │
-│   ├── backend/
-│   │   └── products.json         # Raw JSON data of products
-│   │
-│   ├── data/
-│   │   └── products.js           # JavaScript product dataset
-│   │
-│   ├── scripts/
-│   │   ├── amazon.js             # DOM manipulation & storefront logic
-│   │   └── search.js             # Search page filtering & sorting logic
-│   │
-│   ├── styles/
-│   │   ├── shared/
-│   │   │   ├── general.css       # Global resets and shared variables
-│   │   │   └── amazon-header.css # Header styles across pages
-│   │   └── pages/
-│   │       ├── amazon.css        # Homepage & product grid styles
-│   │       ├── search.css        # Search results page styles
-│   │       ├── orders.css        # Orders page layout
-│   │       ├── tracking.css      # Tracking progress bar styles
-│   │       └── checkout/
-│   │           ├── checkout.css  # Checkout page layout
-│   │           └── checkout-header.css
-│   │
-│   └── images/                   # Icons, rating stars, and product media
+├── index.html                # Main storefront homepage (deployed to root on Vercel)
+├── search.html               # Search results and filtering page
+├── checkout.html             # Checkout & order review page
+├── orders.html               # Order history page
+├── tracking.html             # Package delivery tracking page
 │
+├── backend/
+│   └── products.json         # Raw JSON data of products
+│
+├── data/
+│   ├── cart.js               # Shopping cart state management
+│   └── products.js           # JavaScript product dataset
+│
+├── scripts/
+│   ├── amazon.js             # DOM manipulation & storefront logic
+│   ├── checkout.js           # Checkout page logic
+│   └── search.js             # Search page filtering & sorting logic
+│
+├── styles/
+│   ├── shared/
+│   │   ├── general.css       # Global resets and shared variables
+│   │   └── amazon-header.css # Header styles across pages
+│   └── pages/
+│       ├── amazon.css        # Homepage & product grid styles
+│       ├── search.css        # Search results page styles
+│       ├── orders.css        # Orders page layout
+│       ├── tracking.css      # Tracking progress bar styles
+│       └── checkout/
+│           ├── checkout.css  # Checkout page layout
+│           └── checkout-header.css
+│
+├── images/                   # Icons, rating stars, and product media
 └── README.md
 ```
 
@@ -82,21 +82,20 @@ No build tools or package managers required. You can run the project locally usi
 
 ### Option 1: Live Server (VS Code Extension)
 1. Open the project folder in **Visual Studio Code**.
-2. Right-click on `javascript-amazon-project/index.html`.
+2. Right-click on `index.html`.
 3. Select **"Open with Live Server"**.
 
 ### Option 2: Using Python HTTP Server
 Run the following in your terminal from the project root:
 
 ```bash
-cd javascript-amazon-project
 python3 -m http.server 3000
 ```
-Then open `http://localhost:3000/index.html` in your browser.
+Then open `http://localhost:3000/` in your browser.
 
 ### Option 3: Using Node.js (`npx serve`)
 ```bash
-npx serve javascript-amazon-project
+npx serve .
 ```
 
 ---
