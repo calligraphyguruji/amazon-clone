@@ -1,3 +1,7 @@
+:root {
+  --disclaimer-height: 32px;
+}
+
 body {
   font-family: Roboto, Arial;
   color: rgb(33, 33, 33);
@@ -98,4 +102,61 @@ select {
 select:focus,
 input:focus {
   outline: 2px solid rgb(255, 153, 0);
+}
+
+/* ==========================================================================
+   Educational Portfolio Disclaimer Banner & Badge
+   ========================================================================== */
+.portfolio-disclaimer-banner {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--disclaimer-height);
+  background-color: #0f1111;
+  color: #e3e6e6;
+  border-bottom: 2px solid #febd69;
+  font-size: 12px;
+  padding: 0 12px;
+  text-align: center;
+  z-index: 2000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.portfolio-disclaimer-banner strong {
+  color: #febd69;
+}
+
+.portfolio-clone-badge {
+  display: inline-block;
+  background-color: #febd69;
+  color: #111111;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 0.5px;
+  padding: 1px 5px;
+  border-radius: 3px;
+  margin-left: 5px;
+  text-transform: uppercase;
+  vertical-align: middle;
+  line-height: normal;
+}
+
+@media (max-width: 650px) {
+  :root {
+    --disclaimer-height: 38px;
+  }
+
+  .portfolio-disclaimer-banner {
+    font-size: 11px;
+    white-space: normal;
+    line-height: 1.25;
+    padding: 2px 8px;
+  }
 }

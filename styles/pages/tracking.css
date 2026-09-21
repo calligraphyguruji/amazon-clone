@@ -1,6 +1,6 @@
 .main {
   max-width: 850px;
-  margin-top: 90px;
+  margin-top: calc(var(--disclaimer-height, 32px) + 90px);
   margin-bottom: 100px;
   padding-left: 30px;
   padding-right: 30px;

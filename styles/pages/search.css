@@ -6,7 +6,7 @@ body {
 }
 
 .search-page-wrapper {
-  margin-top: 99px;
+  margin-top: calc(var(--disclaimer-height, 32px) + 99px);
   min-height: 100vh;
   background-color: #ffffff;
 }

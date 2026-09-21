@@ -3,7 +3,7 @@
   padding-left: 30px;
   padding-right: 30px;
 
-  margin-top: 140px;
+  margin-top: calc(var(--disclaimer-height, 32px) + 140px);
   margin-bottom: 100px;
 
   /* margin-left: auto;
@@ -208,4 +208,25 @@
 
   margin-top: 11px;
   margin-bottom: 15px;
+}
+
+/* Educational Notice for Demo Checkout */
+.demo-checkout-notice {
+  background-color: #f0f8ff;
+  border: 1px solid #007185;
+  border-left: 5px solid #007185;
+  border-radius: 4px;
+  padding: 12px 16px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 13px;
+  color: #0f1111;
+  line-height: 1.4;
+}
+
+.demo-checkout-notice .notice-icon {
+  font-size: 18px;
+  flex-shrink: 0;
 }

@@ -6,7 +6,7 @@
   align-items: center;
   justify-content: space-between;
   position: fixed;
-  top: 0;
+  top: var(--disclaimer-height, 32px);
   left: 0;
   right: 0;
   height: 60px;
@@ -318,7 +318,7 @@
 /* Subnav bar */
 .amazon-subnav {
   position: fixed;
-  top: 60px;
+  top: calc(var(--disclaimer-height, 32px) + 60px);
   left: 0;
   right: 0;
   height: 39px;

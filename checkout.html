@@ -2,17 +2,15 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
-    <title>Amazon.in Checkout</title>
+    <title>Checkout Demo - Amazon Clone (Portfolio Project)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Simulated checkout demo for educational Amazon clone portfolio project. Not affiliated with Amazon.com, Inc.">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="favicon.ico">
     <link rel="icon" type="image/png" href="favicon.png">
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-    <!-- This code is needed for responsive design to work.
-      (Responsive design = make the website look good on
-      smaller screen sizes like a phone or a tablet). -->
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Load a font called Roboto from Google Fonts. -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -25,12 +23,18 @@
     <link rel="stylesheet" href="styles/pages/checkout/checkout.css">
   </head>
   <body>
+    <!-- Educational Portfolio Disclaimer Banner -->
+    <div class="portfolio-disclaimer-banner" role="alert">
+      <span>⚠️ <strong>Educational Portfolio Project:</strong> Not affiliated with Amazon. Built for learning &amp; demo purposes only. No real transactions.</span>
+    </div>
+
     <div class="checkout-header">
       <div class="header-content">
         <div class="checkout-header-left-section">
-          <a href="index.html">
-            <img class="amazon-logo" src="images/amazon-logo.png">
-            <img class="amazon-mobile-logo" src="images/amazon-mobile-logo.png">
+          <a href="index.html" style="display: flex; align-items: center; text-decoration: none;">
+            <img class="amazon-logo" src="images/amazon-logo.png" alt="Amazon Logo">
+            <span class="portfolio-clone-badge" style="background-color: #232f3e; color: #febd69; margin-top: 10px;">CLONE</span>
+            <img class="amazon-mobile-logo" src="images/amazon-mobile-logo.png" alt="Amazon Logo">
           </a>
         </div>
 
@@ -46,6 +50,12 @@
     </div>
 
     <div class="main">
+      <!-- Demo Notice -->
+      <div class="demo-checkout-notice">
+        <span class="notice-icon">ℹ️</span>
+        <span><strong>Demo Checkout Simulation:</strong> This is an educational demonstration. No real payments, cards, or personal data are collected or processed. Do not enter real credentials.</span>
+      </div>
+
       <div class="page-title">Review your order</div>
 
       <div class="checkout-grid">
@@ -87,6 +97,11 @@
           </button>
         </div>
       </div>
+    </div>
+
+    <!-- Educational Portfolio Footer Disclaimer -->
+    <div style="max-width: 1100px; margin: 40px auto 20px; padding: 20px; text-align: center; color: #565959; font-size: 12px; border-top: 1px solid #ddd;">
+      Educational Portfolio Project &bull; Simulated Checkout for demonstration only &bull; Not affiliated with Amazon.com, Inc.
     </div>
 
     <script src="data/products.js"></script>
